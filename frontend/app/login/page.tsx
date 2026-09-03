@@ -7,8 +7,8 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Mail, Lock, Sparkles } from "lucide-react";
 
 function LoginForm() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("swayambikash234@gmail.com");
+  const [password, setPassword] = useState("@swayam1234");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
