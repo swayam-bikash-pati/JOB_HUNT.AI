@@ -784,3 +784,57 @@ textarea.form-input {
     grid-template-columns: 1fr;
   }
 }
+
+/* ============================================================
+   Job Description Rich Text Styling
+   ============================================================ */
+.job-description-body {
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--text-secondary);
+}
+
+.job-description-body h1,
+.job-description-body h2,
+.job-description-body h3,
+.job-description-body h4 {
+  color: var(--text-primary);
+  font-weight: 700;
+  margin-top: 22px;
+  margin-bottom: 10px;
+}
+
+.job-description-body h2 {
+  font-size: 18px;
+}
+
+.job-description-body h3 {
+  font-size: 16px;
+}
+
+.job-description-body p {
+  margin-bottom: 14px;
+}
+
+.job-description-body ul,
+.job-description-body ol {
+  padding-left: 22px;
+  margin-bottom: 16px;
+}
+
+.job-description-body li {
+  margin-bottom: 8px;
+  color: var(--text-secondary);
+}
+
+.job-description-body strong,
+.job-description-body b {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.job-description-body a {
+  color: var(--accent-blue);
+  text-decoration: underline;
+}
+

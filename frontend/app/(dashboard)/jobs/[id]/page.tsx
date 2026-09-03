@@ -15,6 +15,40 @@ import {
   formatRemoteType,
 } from "@/lib/types";
 
+function cleanJobDescription(raw: string | null | undefined): string {
+  if (!raw) return "<p>No description provided.</p>";
+
+  // Decode HTML entities if escaped (common in Greenhouse/Lever ATS feeds)
+  let text = raw;
+  if (
+    text.includes("&lt;") ||
+    text.includes("&gt;") ||
+    text.includes("&quot;") ||
+    text.includes("&amp;") ||
+    text.includes("&#39;")
+  ) {
+    text = text
+      .replace(/&amp;/g, "&")
+      .replace(/&lt;/g, "<")
+      .replace(/&gt;/g, ">")
+      .replace(/&quot;/g, '"')
+      .replace(/&#39;/g, "'")
+      .replace(/&apos;/g, "'")
+      .replace(/&#x2F;/g, "/")
+      .replace(/&#(\d+);/g, (_, dec) => String.fromCharCode(dec));
+  }
+
+  // If the text has no HTML tags, convert newlines to paragraph blocks
+  if (!/<[a-z][\s\S]*>/i.test(text)) {
+    return text
+      .split(/\n{2,}/)
+      .map((para) => `<p>${para.replace(/\n/g, "<br/>")}</p>`)
+      .join("");
+  }
+
+  return text;
+}
+
 export default async function JobDetailPage({
   params,
 }: {
@@ -160,13 +194,10 @@ export default async function JobDetailPage({
                 <span className="card-title">Job Description</span>
               </div>
               <div
-                style={{
-                  fontSize: "14px",
-                  lineHeight: "1.7",
-                  color: "var(--text-secondary)",
-                  whiteSpace: "pre-wrap",
+                className="job-description-body"
+                dangerouslySetInnerHTML={{
+                  __html: cleanJobDescription(job.description),
                 }}
-                dangerouslySetInnerHTML={{ __html: job.description }}
               />
             </div>
 
