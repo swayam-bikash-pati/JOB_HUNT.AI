@@ -1,0 +1,38 @@
+name: Job Discovery Worker
+
+on:
+  schedule:
+    # Run every hour
+    - cron: '0 */1 * * *'
+  workflow_dispatch:
+    # Allow manual triggering
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+          cache-dependency-path: worker/requirements.txt
+
+      - name: Install dependencies
+        run: pip install -r worker/requirements.txt
+
+      - name: Run worker
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          AI_PROVIDER: ${{ secrets.AI_PROVIDER }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          AI_DAILY_LIMIT: ${{ secrets.AI_DAILY_LIMIT }}
+          MINIMUM_MATCH_SCORE: ${{ secrets.MINIMUM_MATCH_SCORE }}
+        run: python -m worker.main
+
