@@ -98,18 +98,19 @@ async def run_pipeline():
         stats["sources_tried"] += 1
 
         try:
-            print(f"  Fetching from {source_name}...")
+            source_name = getattr(adapter, "company_name", adapter.get_source_name())
             jobs = await adapter.fetch_jobs()
             all_jobs.extend(jobs)
             stats["sources_succeeded"] += 1
-            print(f"  ✓ {source_name}: {len(jobs)} jobs found")
+            print(f"  [OK] {source_name}: {len(jobs)} jobs found")
         except Exception as e:
+            source_name = getattr(adapter, "company_name", adapter.get_source_name())
             stats["errors"] += 1
             stats["error_details"].append({
                 "source": source_name,
                 "error": str(e),
             })
-            print(f"  ✗ {source_name} failed: {e}")
+            print(f"  [FAIL] {source_name} failed: {e}")
             # Continue with other sources — don't stop the pipeline
             continue
 

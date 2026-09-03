@@ -85,6 +85,9 @@ class GreenhouseAdapter(SourceAdapter):
             # Detect remote type from location
             remote_type = self._detect_remote_type(location, description)
 
+            # Detect employment type from title/content
+            employment_type = self._detect_employment_type(title, description)
+
             # Extract structured fields using JobParser
             from worker.parsers.job_parser import JobParser
             min_exp, max_exp = JobParser.extract_experience_years(f"{title} {description}")

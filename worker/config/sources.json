@@ -2,56 +2,65 @@
   "sources": [
     {
       "type": "greenhouse",
-      "name": "Razorpay",
-      "board_token": "razorpay",
-      "enabled": true,
-      "filters": {
-        "title_keywords": ["engineer", "ML", "data", "AI", "python", "machine learning", "software", "developer", "intern"]
-      }
-    },
-    {
-      "type": "greenhouse",
-      "name": "Swiggy",
-      "board_token": "swiggy",
-      "enabled": true,
-      "filters": {
-        "title_keywords": ["engineer", "ML", "data", "AI", "python", "machine learning", "software", "developer", "intern"]
-      }
-    },
-    {
-      "type": "greenhouse",
-      "name": "CRED",
-      "board_token": "cred",
-      "enabled": true,
-      "filters": {
-        "title_keywords": ["engineer", "ML", "data", "AI", "python", "machine learning", "software", "developer", "intern"]
-      }
-    },
-    {
-      "type": "greenhouse",
       "name": "Postman",
       "board_token": "postman",
       "enabled": true,
       "filters": {
-        "title_keywords": ["engineer", "ML", "data", "AI", "python", "machine learning", "software", "developer", "intern"]
+        "title_keywords": ["engineer", "ml", "data", "ai", "python", "software", "backend", "fullstack", "developer"]
       }
     },
     {
-      "type": "lever",
-      "name": "Notion",
-      "company_slug": "notion",
+      "type": "greenhouse",
+      "name": "Canonical",
+      "board_token": "canonical",
       "enabled": true,
       "filters": {
-        "title_keywords": ["engineer", "ML", "data", "AI", "python", "machine learning", "software", "developer", "intern"]
+        "title_keywords": ["engineer", "ml", "data", "ai", "python", "software", "developer", "linux", "cloud"]
       }
     },
     {
-      "type": "lever",
+      "type": "greenhouse",
+      "name": "GitLab",
+      "board_token": "gitlab",
+      "enabled": true,
+      "filters": {
+        "title_keywords": ["engineer", "ml", "data", "ai", "python", "software", "backend", "fullstack"]
+      }
+    },
+    {
+      "type": "greenhouse",
       "name": "Figma",
-      "company_slug": "figma",
+      "board_token": "figma",
       "enabled": true,
       "filters": {
-        "title_keywords": ["engineer", "ML", "data", "AI", "python", "machine learning", "software", "developer", "intern"]
+        "title_keywords": ["engineer", "ml", "data", "ai", "software", "systems", "backend"]
+      }
+    },
+    {
+      "type": "greenhouse",
+      "name": "Discord",
+      "board_token": "discord",
+      "enabled": true,
+      "filters": {
+        "title_keywords": ["engineer", "ml", "data", "ai", "python", "software", "backend"]
+      }
+    },
+    {
+      "type": "greenhouse",
+      "name": "Datadog",
+      "board_token": "datadog",
+      "enabled": true,
+      "filters": {
+        "title_keywords": ["engineer", "ml", "data", "ai", "python", "software", "backend"]
+      }
+    },
+    {
+      "type": "lever",
+      "name": "CRED",
+      "company_slug": "cred",
+      "enabled": true,
+      "filters": {
+        "title_keywords": ["engineer", "ml", "data", "ai", "python", "software", "backend", "developer"]
       }
     }
   ]
