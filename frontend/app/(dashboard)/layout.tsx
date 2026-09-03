@@ -24,8 +24,21 @@ export default async function DashboardLayout({
     .eq("user_id", user.id)
     .single();
 
-  const userName =
-    profile?.full_name || user.user_metadata?.full_name || user.email || "";
+  let userName = profile?.full_name || user.user_metadata?.full_name || "";
+
+  // If profile row doesn't exist yet, ensure it is created according to schema
+  if (!profile) {
+    const fallbackName = user.user_metadata?.full_name || user.email?.split("@")[0] || "Candidate";
+    await supabase.from("profiles").upsert(
+      {
+        user_id: user.id,
+        full_name: fallbackName,
+        email: user.email || "",
+      },
+      { onConflict: "user_id" }
+    );
+    userName = fallbackName;
+  }
 
   return (
     <div className="app-layout">
