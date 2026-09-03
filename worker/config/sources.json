@@ -1,0 +1,58 @@
+{
+  "sources": [
+    {
+      "type": "greenhouse",
+      "name": "Razorpay",
+      "board_token": "razorpay",
+      "enabled": true,
+      "filters": {
+        "title_keywords": ["engineer", "ML", "data", "AI", "python", "machine learning", "software", "developer", "intern"]
+      }
+    },
+    {
+      "type": "greenhouse",
+      "name": "Swiggy",
+      "board_token": "swiggy",
+      "enabled": true,
+      "filters": {
+        "title_keywords": ["engineer", "ML", "data", "AI", "python", "machine learning", "software", "developer", "intern"]
+      }
+    },
+    {
+      "type": "greenhouse",
+      "name": "CRED",
+      "board_token": "cred",
+      "enabled": true,
+      "filters": {
+        "title_keywords": ["engineer", "ML", "data", "AI", "python", "machine learning", "software", "developer", "intern"]
+      }
+    },
+    {
+      "type": "greenhouse",
+      "name": "Postman",
+      "board_token": "postman",
+      "enabled": true,
+      "filters": {
+        "title_keywords": ["engineer", "ML", "data", "AI", "python", "machine learning", "software", "developer", "intern"]
+      }
+    },
+    {
+      "type": "lever",
+      "name": "Notion",
+      "company_slug": "notion",
+      "enabled": true,
+      "filters": {
+        "title_keywords": ["engineer", "ML", "data", "AI", "python", "machine learning", "software", "developer", "intern"]
+      }
+    },
+    {
+      "type": "lever",
+      "name": "Figma",
+      "company_slug": "figma",
+      "enabled": true,
+      "filters": {
+        "title_keywords": ["engineer", "ML", "data", "AI", "python", "machine learning", "software", "developer", "intern"]
+      }
+    }
+  ]
+}
