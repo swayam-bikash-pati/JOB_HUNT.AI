@@ -452,24 +452,33 @@ CREATE TRIGGER tr_application_answers_updated_at BEFORE UPDATE ON application_an
 CREATE TRIGGER tr_source_configs_updated_at BEFORE UPDATE ON source_configs
     FOR EACH ROW EXECUTE FUNCTION update_updated_at();
 
--- Function to auto-create profile on user signup
-CREATE OR REPLACE FUNCTION handle_new_user()
+-- Function to auto-create profile on user signup (supports Google OAuth)
+CREATE OR REPLACE FUNCTION public.handle_new_user()
 RETURNS TRIGGER AS $$
 BEGIN
-    INSERT INTO profiles (user_id, full_name, email)
+    INSERT INTO public.profiles (user_id, full_name, email)
     VALUES (
         NEW.id,
-        COALESCE(NEW.raw_user_meta_data->>'full_name', ''),
+        COALESCE(NEW.raw_user_meta_data->>'full_name', NEW.raw_user_meta_data->>'name', ''),
         COALESCE(NEW.email, '')
-    );
+    )
+    ON CONFLICT (user_id) DO UPDATE
+    SET 
+        full_name = CASE WHEN profiles.full_name = '' THEN EXCLUDED.full_name ELSE profiles.full_name END,
+        email = EXCLUDED.email,
+        updated_at = NOW();
     RETURN NEW;
+EXCEPTION
+    WHEN OTHERS THEN
+        RETURN NEW;
 END;
-$$ LANGUAGE plpgsql SECURITY DEFINER;
+$$ LANGUAGE plpgsql SECURITY DEFINER SET search_path = public;
 
 -- Trigger: auto-create profile when a new user signs up
+DROP TRIGGER IF EXISTS on_auth_user_created ON auth.users;
 CREATE TRIGGER on_auth_user_created
     AFTER INSERT ON auth.users
-    FOR EACH ROW EXECUTE FUNCTION handle_new_user();
+    FOR EACH ROW EXECUTE FUNCTION public.handle_new_user();
 
 -- ============================================================
 -- STORAGE BUCKET
